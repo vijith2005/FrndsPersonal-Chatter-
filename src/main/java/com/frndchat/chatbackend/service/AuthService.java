@@ -17,7 +17,7 @@ public class AuthService {
 
         OtpToken otpToken = otpService.createOtp(email);
 
-        // For development/testing only
+        // Development/testing only
         System.out.println(
                 "OTP for " + email + " : " + otpToken.getOtp()
         );
@@ -26,8 +26,13 @@ public class AuthService {
     }
 
     // Verify OTP
-    public boolean verifyOtp(String email, String enteredOtp) {
+    public boolean verifyOtp(
+            String email,
+            String enteredOtp) {
 
-        return otpService.verifyOtp(email, enteredOtp);
+        return otpService.verifyOtp(
+                email,
+                enteredOtp
+        );
     }
 }

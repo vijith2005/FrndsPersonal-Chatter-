@@ -18,20 +18,22 @@ public class AuthController {
     public ResponseEntity<String> sendOtp(
             @RequestParam String email) {
 
-        String token = authService.generateOtpToken(email);
+        String otp = authService.generateOtp(email);
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(
+                "OTP sent successfully to " + email
+        );
     }
 
     @PostMapping("/verify-otp")
     public ResponseEntity<String> verifyOtp(
-            @RequestParam String token,
+            @RequestParam String email,
             @RequestParam String otp) {
 
-        boolean verified = authService.verifyOtp(token, otp);
+        boolean verified =
+                authService.verifyOtp(email, otp);
 
         if (verified) {
-            String email = authService.getEmailFromOtpToken(token);
 
             return ResponseEntity.ok(
                     "OTP verified successfully for " + email
