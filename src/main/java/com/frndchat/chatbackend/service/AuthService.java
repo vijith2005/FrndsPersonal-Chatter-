@@ -12,12 +12,8 @@ public class AuthService {
         this.otpService = otpService;
     }
 
-    // Generate and store OTP in PostgreSQL
     public String generateOtp(String email) {
-
         OtpToken otpToken = otpService.createOtp(email);
-
-        // Development/testing only
         System.out.println(
                 "OTP for " + email + " : " + otpToken.getOtp()
         );
@@ -25,14 +21,7 @@ public class AuthService {
         return otpToken.getOtp();
     }
 
-    // Verify OTP
-    public boolean verifyOtp(
-            String email,
-            String enteredOtp) {
-
-        return otpService.verifyOtp(
-                email,
-                enteredOtp
-        );
+    public boolean verifyOtp(String email, String enteredOtp) {
+        return otpService.verifyOtp(email, enteredOtp);
     }
 }
