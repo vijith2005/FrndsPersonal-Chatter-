@@ -1,25 +1,30 @@
 package com.frndchat.chatbackend.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "allowed_emails")
 public class AllowedEmail {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
     private String email;
-    private boolean allowed;
 
     public AllowedEmail() {
     }
 
-    public AllowedEmail(String id, String email, boolean allowed) {
-        this.id = id;
+    public AllowedEmail(String email) {
         this.email = email;
-        this.allowed = allowed;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -29,13 +34,5 @@ public class AllowedEmail {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isAllowed() {
-        return allowed;
-    }
-
-    public void setAllowed(boolean allowed) {
-        this.allowed = allowed;
     }
 }
